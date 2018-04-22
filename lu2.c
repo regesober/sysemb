@@ -25,8 +25,7 @@ int Doolittle_LU_Decomposition(double *A, int n)
    return 0;
 }
 
-double* createMatrix (int n) {
-	double* A = (double*) malloc(n*n*sizeof(double));
+double* createMatrix (double A[], int n) {
 	int i, j;
 	for(i = 0; i < n; i++) {
 		for (j = 0; j < n; j++) {
@@ -37,8 +36,9 @@ double* createMatrix (int n) {
 }
 
 int main(int argc, char** argv) {
-    int n = 1000;
-    double* A = createMatrix(n);
-	Doolittle_LU_Decomposition(A, n);
+    int n = 5;
+    double A[25];
+    createMatrix(A, n);
+    Doolittle_LU_Decomposition(A, n);
     return (EXIT_SUCCESS);
 }
