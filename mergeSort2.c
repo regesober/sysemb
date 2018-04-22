@@ -4,7 +4,7 @@
 // Merges two subarrays of arr[].
 // First subarray is arr[l..m]
 // Second subarray is arr[m+1..r]
-void merge(int arr[], int l, int m, int r)
+void merge(int arr[], int L[], int R[], int l, int m, int r)
 {
     int i, j, k;
     int n1 = m - l + 1;
@@ -12,8 +12,6 @@ void merge(int arr[], int l, int m, int r)
  
     /* create temp arrays */
     //int L[n1], R[n2];
-    int* L = (int*) malloc(n1*sizeof(int));
-    int* R = (int*) malloc(n2*sizeof(int));
  
     /* Copy data to temp arrays L[] and R[] */
     for (i = 0; i < n1; i++)
@@ -61,7 +59,7 @@ void merge(int arr[], int l, int m, int r)
  
 /* l is for left index and r is right index of the
    sub-array of arr to be sorted */
-void mergeSort(int arr[], int l, int r)
+void mergeSort(int arr[], int L[], int R[], int l, int r)
 {
     if (l < r)
     {
@@ -70,17 +68,17 @@ void mergeSort(int arr[], int l, int r)
         int m = l+(r-l)/2;
  
         // Sort first and second halves
-        mergeSort(arr, l, m);
-        mergeSort(arr, m+1, r);
+        mergeSort(arr, L, R, l, m);
+        mergeSort(arr, L, R, m+1, r);
  
-        merge(arr, l, m, r);
+        merge(arr, L, R, l, m, r);
     }
 }
  
 /* Driver program to test above functions */
 int main() {
-    int arr[20];
+    int arr[20], L[20], R[20];
     int arr_size = sizeof(arr)/sizeof(arr[0]);
-    mergeSort(arr, 0, arr_size - 1);
+    mergeSort(arr, L, R, 0, arr_size - 1);
     return 0;
 }
